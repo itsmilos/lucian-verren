@@ -2,16 +2,6 @@
 
 import Link from "next/link";
 
-const leftLinks = [
-  { label: "Home", href: "/" },
-  { label: "Books", href: "/books" },
-];
-
-const rightLinks = [
-  { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-];
-
 export default function Navbar() {
   return (
     <header className="w-full bg-[#101114] text-[#F5F1E8]">
@@ -32,57 +22,28 @@ export default function Navbar() {
       </div>
 
       <nav className="border-b border-white/[0.08]">
-        <div className="mx-auto grid min-h-[88px] max-w-7xl grid-cols-3 items-center px-6 md:px-10">
-          <div className="hidden items-center gap-8 md:flex">
-            {leftLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-sm text-white/60 transition-colors duration-200 hover:text-[#D7B778]"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
+        <div className="mx-auto flex min-h-[76px] max-w-7xl items-center justify-between px-4 sm:px-6 md:min-h-[88px] md:px-10">
           <Link
             href="/"
-            className="col-start-2 justify-self-center whitespace-nowrap font-serif text-xl tracking-tight text-[#F5F1E8] sm:text-3xl"
+            className="whitespace-nowrap font-serif text-xl tracking-tight text-[#F5F1E8] transition-colors duration-300 hover:text-[#D7B778] sm:text-3xl"
           >
-            Lucan Verren
+            Lucian Verren
             <span className="text-[#D7B778]">.</span>
           </Link>
 
-          <div className="hidden items-center justify-end gap-7 md:flex">
-            {rightLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-sm text-white/60 transition-colors duration-200 hover:text-[#D7B778]"
-              >
-                {link.label}
-              </Link>
-            ))}
+          <Link
+            href="/books/the-silence-behind-reality"
+            className="group relative inline-flex min-h-[40px] items-center justify-center gap-2 overflow-hidden rounded-full border border-[#D4B06A]/60 px-4 py-2 font-sans text-[8px] font-semibold uppercase tracking-[0.22em] text-[#D4B06A] transition-all duration-500 hover:-translate-y-0.5 hover:border-[#E8CD8F] hover:text-[#040507] hover:shadow-[0_8px_25px_rgba(212,176,106,0.15)] sm:min-h-[44px] sm:gap-3 sm:px-6 sm:text-[9px]"
+          >
+            <span
+              className="absolute inset-0 -translate-y-full rounded-full transition-transform duration-500 ease-out group-hover:translate-y-0"
+              style={{
+                backgroundImage: "linear-gradient(to bottom, #e8cd8f, #c9a45e)",
+              }}
+            />
 
-            <Link
-              href="/books"
-              className="rounded-sm bg-[#B9DDF2] px-5 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-[#172632] transition-colors duration-200 hover:bg-[#D0E9F8]"
-            >
-              Explore Books
-            </Link>
-          </div>
-
-          <div className="col-span-3 row-start-2 flex items-center justify-center gap-6 pb-4 md:hidden">
-            {[...leftLinks, ...rightLinks].map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-xs text-white/60 transition-colors hover:text-[#D7B778]"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+            <span className="relative">Get the Book</span>
+          </Link>
         </div>
       </nav>
     </header>
