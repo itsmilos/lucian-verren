@@ -7,7 +7,6 @@ import {
   BadgeCheck,
   CreditCard,
   Lock,
-  Mail,
   Minus,
   Plus,
   ShieldCheck,
@@ -22,72 +21,35 @@ const CHECKOUT_URL = "#";
 const SUPPORT_EMAIL = "support@yourdomain.com";
 
 const versions = [
-  { id: "ebook", label: "Ebook (PDF)", price: 17, oldPrice: 29, link: "#" },
+  {
+    id: "ebook",
+    label: "Ebook (PDF)",
+    price: 17,
+    oldPrice: 29,
+    link: "#",
+  },
 ];
 
-const faqGroups = [
+const faqItems = [
   {
-    title: "Ordering & delivery",
-    items: [
-      {
-        q: "How do I get access after I order?",
-        a: "As soon as your payment is confirmed, you receive an email with your download link. There is no shipping and no waiting.",
-      },
-      {
-        q: "How long does delivery take?",
-        a: "Delivery is instant. The email usually arrives within a few minutes of your payment.",
-      },
-      {
-        q: "I didn't receive my email. What now?",
-        a: "Check your spam and promotions folders first, and make sure you typed your email address correctly at checkout. If it's still missing, contact us and we will resend your link.",
-      },
-      {
-        q: "Can I download the book again later?",
-        a: "Yes. Keep your delivery email, since the download link in it can be used again. If you lose it, contact us and we will send it again.",
-      },
-    ],
+    q: "How do I get access after I order?",
+    a: "As soon as your payment is confirmed, you receive an email with your download link. There is no shipping and no waiting.",
   },
   {
-    title: "The book",
-    items: [
-      {
-        q: "What is the book about?",
-        a: "The Silence Behind Reality is a story many readers describe as unsettling because it feels closer to the truth than they expected. It follows Lucian Verren's story and the questions it raises about the world we think we know.",
-      },
-      {
-        q: "Which format should I pick?",
-        a: "Choose the Ebook if you prefer reading and the Audiobook if you prefer listening, for example while commuting or exercising. The content is the same, only the format differs.",
-      },
-      {
-        q: "What devices does it work on?",
-        a: "Any phone, tablet, e-reader or computer. The ebook is a standard PDF, and the audiobook plays in any common audio player.",
-      },
-      {
-        q: "Is there a printed copy?",
-        a: "Right now the book is available in digital format only. That's what lets you get it instantly, anywhere in the world.",
-      },
-    ],
+    q: "What is The Silence Behind Reality about?",
+    a: "The book explores unsettling questions about the world we think we understand, following Lucian Verren through a story built around perception, reality, and the possibility that some truths are better left unseen.",
   },
   {
-    title: "Payment & support",
-    items: [
-      {
-        q: "Is my payment secure?",
-        a: "Yes. Payments are processed by a trusted payment provider over an encrypted connection. Your card details never touch this website and are never stored by us.",
-      },
-      {
-        q: "Is it a one-time payment?",
-        a: "Yes. You pay once. There is no subscription, no recurring charge and no hidden fees.",
-      },
-      {
-        q: "Can I get a refund?",
-        a: "If something goes wrong or the book isn't what you expected, contact us and we will work it out with you. Write to us as soon as possible after your purchase.",
-      },
-      {
-        q: "How can I contact you?",
-        a: `Email us at ${SUPPORT_EMAIL}. We read every message and do our best to reply quickly.`,
-      },
-    ],
+    q: "What devices can I read it on?",
+    a: "The ebook is delivered as a standard PDF, so you can read it on a phone, tablet, laptop, desktop computer, or most modern e-readers.",
+  },
+  {
+    q: "Is this a one-time purchase?",
+    a: "Yes. You pay once and receive access to the digital edition. There are no subscriptions or recurring charges.",
+  },
+  {
+    q: "I didn't receive my download email. What should I do?",
+    a: `Check your spam or promotions folder first. If the email is still missing, contact us at ${SUPPORT_EMAIL} and we will help you get access.`,
   },
 ];
 
@@ -111,6 +73,7 @@ function Badge({ children }: { children: React.ReactNode }) {
 export default function ProductPage() {
   const [openKey, setOpenKey] = useState<string | null>(null);
   const [versionId, setVersionId] = useState(versions[0].id);
+
   const version = versions.find((v) => v.id === versionId)!;
   const save = Math.round((1 - version.price / version.oldPrice) * 100);
 
@@ -122,6 +85,7 @@ export default function ProductPage() {
           background: `radial-gradient(circle, ${GOLD} 0%, transparent 70%)`,
         }}
       />
+
       <div
         className="pointer-events-none absolute bottom-[-10%] right-[-10%] h-[500px] w-[500px] rounded-full opacity-10 blur-[150px]"
         style={{
@@ -134,7 +98,10 @@ export default function ProductPage() {
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              duration: 0.8,
+              ease: [0.22, 1, 0.36, 1],
+            }}
             className="lg:sticky lg:top-8"
           >
             <div className="relative border border-[#d4b06a]/40 bg-[#08090b] p-1 shadow-[0_0_60px_rgba(212,176,106,0.08)]">
@@ -149,7 +116,11 @@ export default function ProductPage() {
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            transition={{
+              duration: 0.8,
+              delay: 0.1,
+              ease: [0.22, 1, 0.36, 1],
+            }}
           >
             <Badge>Digital Edition</Badge>
 
@@ -179,9 +150,11 @@ export default function ProductPage() {
               >
                 ${version.price}
               </span>
+
               <span className="mb-1 text-lg text-white/35 line-through">
                 ${version.oldPrice}
               </span>
+
               <span
                 className="mb-1 rounded-full border border-[#d4b06a]/40 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em]"
                 style={{ color: GOLD }}
@@ -199,9 +172,11 @@ export default function ProductPage() {
               <p className="mb-3 text-[10px] uppercase tracking-[0.25em] text-white/40">
                 Choose your version
               </p>
+
               <div className="grid grid-cols-2 gap-3">
                 {versions.map((v) => {
                   const active = v.id === versionId;
+
                   return (
                     <button
                       key={v.id}
@@ -233,6 +208,7 @@ export default function ProductPage() {
               }}
             >
               <span className="relative">Add to cart</span>
+
               <ArrowUpRight
                 size={16}
                 className="relative transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
@@ -247,9 +223,18 @@ export default function ProductPage() {
 
               <div className="grid grid-cols-3 border-y border-white/[0.08]">
                 {[
-                  { icon: Lock, lines: ["Encrypted", "Payment"] },
-                  { icon: ShieldCheck, lines: ["Trusted", "Provider"] },
-                  { icon: BadgeCheck, lines: ["Instant", "Delivery"] },
+                  {
+                    icon: Lock,
+                    lines: ["Encrypted", "Payment"],
+                  },
+                  {
+                    icon: ShieldCheck,
+                    lines: ["Trusted", "Provider"],
+                  },
+                  {
+                    icon: BadgeCheck,
+                    lines: ["Instant", "Delivery"],
+                  },
                 ].map(({ icon: Icon, lines }, i) => (
                   <div
                     key={i}
@@ -263,6 +248,7 @@ export default function ProductPage() {
                       className="mb-2"
                       style={{ color: GOLD }}
                     />
+
                     <span className="text-[9px] uppercase tracking-[0.15em] text-white/45">
                       {lines[0]}
                       <br />
@@ -276,114 +262,193 @@ export default function ProductPage() {
         </div>
 
         <motion.section
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mx-auto mt-28 max-w-3xl"
+          transition={{
+            duration: 0.8,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="mt-32"
         >
-          <div className="text-center">
-            <Badge>FAQ</Badge>
-            <h2
-              className="mt-6 text-3xl leading-[1.1] tracking-[-0.02em] sm:text-4xl"
-              style={{ fontFamily: SERIF }}
-            >
-              Questions? <span style={{ color: GOLD }}>We have answers.</span>
-            </h2>
-            <p className="mx-auto mt-4 max-w-md text-sm leading-6 text-white/50">
-              Everything you need to know before you order.
-            </p>
-          </div>
+          <div className="grid items-start gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
+            <div className="lg:sticky lg:top-10">
+              <Badge>FAQ</Badge>
 
-          <div className="mt-12 space-y-12">
-            {faqGroups.map((group) => (
-              <div key={group.title}>
-                <div className="mb-4 flex items-center gap-3">
-                  <span
-                    className="h-px w-8"
-                    style={{ backgroundColor: GOLD }}
-                  />
-                  <h3
-                    className="text-[10px] font-medium uppercase tracking-[0.28em]"
-                    style={{ color: BLUE }}
+              <h2
+                className="mt-6 max-w-md text-3xl leading-[1.1] tracking-[-0.02em] sm:text-4xl"
+                style={{ fontFamily: SERIF }}
+              >
+                Questions? <span style={{ color: GOLD }}>We have answers.</span>
+              </h2>
+
+              <p className="mt-5 max-w-sm text-sm leading-7 text-white/50">
+                A few things worth knowing before you step into the story.
+              </p>
+
+              <div className="mt-8 h-px w-16 bg-[#d4b06a]/60" />
+            </div>
+
+            <div className="space-y-3">
+              {faqItems.map((item) => {
+                const open = openKey === item.q;
+
+                return (
+                  <div
+                    key={item.q}
+                    className={`border bg-[#08090b] transition-colors ${
+                      open
+                        ? "border-[#d4b06a]/50"
+                        : "border-white/[0.08] hover:border-[#d4b06a]/30"
+                    }`}
                   >
-                    {group.title}
-                  </h3>
-                </div>
-
-                <div className="space-y-3">
-                  {group.items.map((item) => {
-                    const open = openKey === item.q;
-                    return (
-                      <div
-                        key={item.q}
-                        className={`border bg-[#08090b] transition-colors ${
-                          open ? "border-[#d4b06a]/50" : "border-[#d4b06a]/20"
+                    <button
+                      type="button"
+                      onClick={() => setOpenKey(open ? null : item.q)}
+                      aria-expanded={open}
+                      className="flex w-full items-center justify-between gap-5 px-5 py-5 text-left sm:px-6"
+                    >
+                      <span
+                        className={`text-[15px] leading-6 transition-colors sm:text-base ${
+                          open ? "text-white" : "text-white/75"
                         }`}
+                        style={{ fontFamily: SERIF }}
                       >
-                        <button
-                          type="button"
-                          onClick={() => setOpenKey(open ? null : item.q)}
-                          aria-expanded={open}
-                          className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
-                        >
-                          <span
-                            className={`text-[15px] transition-colors sm:text-base ${
-                              open ? "text-white" : "text-white/75"
-                            }`}
-                            style={{ fontFamily: SERIF }}
-                          >
-                            {item.q}
-                          </span>
-                          <span
-                            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[#d4b06a]/40"
-                            style={{ color: GOLD }}
-                          >
-                            {open ? <Minus size={13} /> : <Plus size={13} />}
-                          </span>
-                        </button>
+                        {item.q}
+                      </span>
 
-                        <AnimatePresence initial={false}>
-                          {open && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{
-                                duration: 0.3,
-                                ease: [0.22, 1, 0.36, 1],
-                              }}
-                              className="overflow-hidden"
-                            >
-                              <p className="px-5 pb-5 pr-12 text-sm leading-7 text-white/60">
-                                {item.a}
-                              </p>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    );
-                  })}
+                      <span
+                        className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#d4b06a]/40"
+                        style={{ color: GOLD }}
+                      >
+                        {open ? <Minus size={13} /> : <Plus size={13} />}
+                      </span>
+                    </button>
+
+                    <AnimatePresence initial={false}>
+                      {open && (
+                        <motion.div
+                          initial={{
+                            height: 0,
+                            opacity: 0,
+                          }}
+                          animate={{
+                            height: "auto",
+                            opacity: 1,
+                          }}
+                          exit={{
+                            height: 0,
+                            opacity: 0,
+                          }}
+                          transition={{
+                            duration: 0.3,
+                            ease: [0.22, 1, 0.36, 1],
+                          }}
+                          className="overflow-hidden"
+                        >
+                          <p className="px-5 pb-6 pr-12 text-sm leading-7 text-white/55 sm:px-6">
+                            {item.a}
+                          </p>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </motion.section>
+
+        <motion.section
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{
+            duration: 0.8,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="mt-36 border-t border-white/[0.08] pt-20"
+        >
+          <div className="grid items-center gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
+            <div>
+              <Badge>Table of Contents</Badge>
+
+              <h2
+                className="mt-6 text-3xl leading-[1.1] tracking-[-0.02em] sm:text-4xl"
+                style={{ fontFamily: SERIF }}
+              >
+                41 chapters.{" "}
+                <span style={{ color: GOLD }}>One simulation.</span>
+              </h2>
+
+              <div className="mt-8 space-y-6">
+                <p
+                  className="text-lg leading-8 text-white/75"
+                  style={{ fontFamily: SERIF }}
+                >
+                  These are the chapters of{" "}
+                  <span className="text-white">The Silence Behind Reality</span>
+                  . And no this isn't clickbait. Every single chapter is real,
+                  and each one will blow your mind.
+                </p>
+
+                <p className="text-sm leading-7 text-white/50">
+                  This book is addictive. Like a drug. Even after the final
+                  chapter, you'll be craving for more.
+                </p>
+
+                <p className="text-sm leading-7 text-white/50">
+                  Right now, we have{" "}
+                  <span style={{ color: GOLD }}>"only" 41 chapters</span> but
+                  within these pages lies some of the most shocking,
+                  mind-altering information you will ever read.
+                </p>
+
+                <p
+                  className="border-l border-[#d4b06a]/50 pl-5 text-base italic leading-7 text-white/65"
+                  style={{ fontFamily: SERIF }}
+                >
+                  It's now or never. Step inside the simulation... and we'll see
+                  you in the future.
+                </p>
+              </div>
+
+              <div className="mt-10 flex items-center gap-4">
+                <div className="h-px w-12 bg-[#d4b06a]/60" />
+
+                <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/35">
+                  41 Chapters
+                </span>
+              </div>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 35, scale: 0.97 }}
+              whileInView={{ opacity: 1, x: 0, scale: 1 }}
+              viewport={{
+                once: true,
+                amount: 0.15,
+              }}
+              transition={{
+                duration: 0.9,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="relative flex justify-center lg:justify-end"
+            >
+              <div className="relative w-full max-w-[560px]">
+                <div className="absolute -inset-8 rounded-full bg-[#d4b06a]/[0.06] blur-[80px]" />
+
+                <div className="relative border border-[#d4b06a]/30 bg-[#08090b] p-2 shadow-[0_0_80px_rgba(212,176,106,0.1)]">
+                  <img
+                    src="/table-of-contents.webp"
+                    alt="The Silence Behind Reality by Lucian Verren"
+                    className="block h-auto w-full"
+                  />
+
+                  <div className="pointer-events-none absolute inset-5 border border-[#d4b06a]/10" />
                 </div>
               </div>
-            ))}
-          </div>
-
-          <div className="mt-14 border border-[#d4b06a]/20 bg-[#08090b] px-6 py-8 text-center">
-            <p className="text-lg" style={{ fontFamily: SERIF }}>
-              Still have a question?
-            </p>
-            <p className="mt-2 text-sm text-white/50">
-              Write to us and we will get back to you.
-            </p>
-            <a
-              href={`mailto:${SUPPORT_EMAIL}`}
-              className="mt-5 inline-flex items-center gap-2 rounded-full border border-[#d4b06a]/50 px-6 py-3 text-[10px] font-semibold uppercase tracking-[0.25em] transition hover:bg-[#d4b06a]/10"
-              style={{ color: GOLD }}
-            >
-              <Mail size={14} />
-              Contact us
-            </a>
+            </motion.div>
           </div>
         </motion.section>
       </div>
