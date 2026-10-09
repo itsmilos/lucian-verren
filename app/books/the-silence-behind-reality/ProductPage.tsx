@@ -6,6 +6,7 @@ import {
   ArrowUpRight,
   BadgeCheck,
   CreditCard,
+  Eye,
   Lock,
   Minus,
   Plus,
@@ -60,6 +61,7 @@ function Badge({ children }: { children: React.ReactNode }) {
         className="h-1.5 w-1.5 rounded-full"
         style={{ backgroundColor: GOLD }}
       />
+
       <span
         className="text-[10px] font-semibold uppercase tracking-[0.25em]"
         style={{ color: GOLD }}
@@ -260,6 +262,230 @@ export default function ProductPage() {
             </div>
           </motion.div>
         </div>
+
+        <motion.section
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{
+            duration: 0.9,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="mt-32"
+        >
+          <div className="mb-8 flex items-end justify-between border-b border-white/[0.08] pb-6">
+            <div>
+              <p className="text-[9px] uppercase tracking-[0.45em] text-[#d4b06a]">
+                Step inside
+              </p>
+
+              <h2
+                className="mt-4 text-3xl leading-[1.05] tracking-[-0.025em] sm:text-5xl"
+                style={{ fontFamily: SERIF }}
+              >
+                There is more
+                <br />
+                <span style={{ color: GOLD }}>beneath the surface.</span>
+              </h2>
+            </div>
+
+            <div className="hidden items-center gap-3 sm:flex">
+              <Eye size={16} strokeWidth={1.2} style={{ color: GOLD }} />
+
+              <span className="text-[9px] uppercase tracking-[0.35em] text-white/30">
+                Look closer
+              </span>
+            </div>
+          </div>
+
+          <div className="grid gap-3 lg:grid-cols-12">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{
+                duration: 0.9,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="group relative overflow-hidden border border-[#d4b06a]/20 bg-[#08090b] lg:col-span-7"
+            >
+              <img
+                src="/ebook3.webp"
+                alt="The Silence Behind Reality by Lucian Verren"
+                className="block h-full min-h-[620px] w-full object-cover object-center transition-transform duration-1000 group-hover:scale-[1.025]"
+              />
+
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#040507] via-transparent to-black/10" />
+
+              <div className="absolute left-6 top-6">
+                <span className="border border-white/10 bg-black/30 px-3 py-2 text-[8px] uppercase tracking-[0.3em] text-white/50 backdrop-blur-md">
+                  The Silence Behind Reality
+                </span>
+              </div>
+
+              <div className="absolute bottom-7 left-7 right-7 flex items-end justify-between">
+                <div>
+                  <p className="text-[8px] uppercase tracking-[0.4em] text-[#d4b06a]">
+                    Lucian Verren
+                  </p>
+
+                  <p
+                    className="mt-2 text-2xl text-white sm:text-3xl"
+                    style={{ fontFamily: SERIF }}
+                  >
+                    Some truths are better left unseen.
+                  </p>
+                </div>
+
+                <span className="hidden text-[8px] uppercase tracking-[0.3em] text-white/25 sm:block">
+                  01 / 03
+                </span>
+              </div>
+            </motion.div>
+
+            <div className="grid gap-3 lg:col-span-5">
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.1,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="border border-white/[0.08] bg-[#08090b] p-7 sm:p-9"
+              >
+                <p className="text-[8px] uppercase tracking-[0.4em] text-[#d4b06a]">
+                  The premise
+                </p>
+
+                <h3
+                  className="mt-6 text-2xl leading-[1.2] text-white sm:text-3xl"
+                  style={{ fontFamily: SERIF }}
+                >
+                  What if the reality you know is only the version you were
+                  given?
+                </h3>
+
+                <p className="mt-6 text-sm leading-7 text-white/45">
+                  The Silence Behind Reality follows the questions that begin
+                  when certainty starts to disappear. Perception, hidden
+                  patterns, human behavior, and the stories we accept without
+                  questioning them.
+                </p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.2,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="grid grid-cols-3 border border-[#d4b06a]/20 bg-[#0a0b0d]"
+              >
+                {[
+                  {
+                    number: "41",
+                    label: "Chapters",
+                  },
+                  {
+                    number: "01",
+                    label: "Digital Edition",
+                  },
+                  {
+                    number: "∞",
+                    label: "Questions",
+                  },
+                ].map((item, index) => (
+                  <div
+                    key={item.label}
+                    className={`flex min-h-[150px] flex-col justify-between p-5 sm:p-7 ${
+                      index !== 0 ? "border-l border-white/[0.08]" : ""
+                    }`}
+                  >
+                    <span className="text-[8px] uppercase tracking-[0.3em] text-white/20">
+                      0{index + 1}
+                    </span>
+
+                    <div>
+                      <p
+                        className="text-3xl text-[#d4b06a] sm:text-4xl"
+                        style={{ fontFamily: SERIF }}
+                      >
+                        {item.number}
+                      </p>
+
+                      <p className="mt-2 text-[8px] uppercase leading-4 tracking-[0.18em] text-white/35">
+                        {item.label}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.15,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="mt-3 grid gap-3 md:grid-cols-3"
+          >
+            {[
+              {
+                number: "01",
+                title: "Question",
+                text: "Begin with the things you have always accepted as obvious.",
+              },
+              {
+                number: "02",
+                title: "Explore",
+                text: "Follow the ideas, patterns and possibilities hidden beneath the surface.",
+              },
+              {
+                number: "03",
+                title: "Decide",
+                text: "Come to your own conclusions about what deserves to be believed.",
+              },
+            ].map((item) => (
+              <div
+                key={item.number}
+                className="border border-white/[0.07] bg-[#08090b] p-7 sm:p-8"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-[8px] tracking-[0.3em] text-[#d4b06a]">
+                    {item.number}
+                  </span>
+
+                  <ArrowUpRight
+                    size={14}
+                    strokeWidth={1}
+                    className="text-white/20"
+                  />
+                </div>
+
+                <h3
+                  className="mt-12 text-2xl text-white"
+                  style={{ fontFamily: SERIF }}
+                >
+                  {item.title}
+                </h3>
+
+                <p className="mt-4 text-sm leading-6 text-white/40">
+                  {item.text}
+                </p>
+              </div>
+            ))}
+          </motion.div>
+        </motion.section>
 
         <motion.section
           initial={{ opacity: 0, y: 35 }}
