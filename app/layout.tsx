@@ -3,6 +3,7 @@ import { Italianno, Manrope } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import RecentActivity from "@/components/RecentActivity";
 
 const italianno = Italianno({
   variable: "--font-italianno",
@@ -122,6 +123,7 @@ export default function RootLayout({
       <body className={`${italianno.variable} ${manrope.variable}`}>
         <Navbar />
         {children}
+        <RecentActivity />
         <Footer />
       </body>
     </html>
