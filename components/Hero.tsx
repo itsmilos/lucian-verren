@@ -16,7 +16,7 @@ import {
 const EASE = [0.22, 1, 0.36, 1] as const;
 const GOLD = "#d4b06a";
 const BLUE = "#7f9bab";
-const VIDEO_SRC = "/trailer1.mp4";
+const VIDEO_SRC = "/trailer.mp4";
 const POSTER_SRC = "/video-poster.webp";
 
 export default function Hero() {
